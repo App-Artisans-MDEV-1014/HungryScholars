@@ -1,22 +1,42 @@
-import React from 'react';
-import { useState, useEffect, FC } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const LoginScreen: React.FC = () => {
+type RootStackParamList = {
+  LaunchingScreen: undefined;
+  SignInSignUp: undefined;
+  SignUp: undefined;
+  // Add other screen names here as needed
+};
+
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SignInSignUp'>;
+
+interface Props {
+  navigation: LoginScreenNavigationProp;
+}
+
+const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Function to handle login button press
   const handleLogin = () => {
     // Implement your login logic here
-    // For demonstration purposes, let's just display the user's email on successful login
     if (email && password) {
       alert(`Logged in as: ${email}`);
     }
   };
 
+  const handleSignUpPress = () => {
+    navigation.navigate('SignUp');
+  };
+
   return (
     <View style={styles.container}>
+      <Text style={styles.heading}>Log In</Text>
+
+      {/* Add your logo image here */}
+      <Image source={require('../../assets/yo.png')} style={styles.logo} resizeMode="contain" />
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -35,7 +55,9 @@ const LoginScreen: React.FC = () => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
-      {/* Add a "Forgot Password" link or any other necessary elements */}
+      <TouchableOpacity onPress={handleSignUpPress}>
+        <Text style={styles.createAccountText}>Don't have an account? Create One</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -46,6 +68,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#242428',
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFDD95',
+    marginBottom: 20,
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
   },
   input: {
     width: '80%',
@@ -69,6 +102,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#242428',
     textAlign: 'center',
+  },
+  createAccountText: {
+    color: '#FFDD95',
+    marginTop: 20,
   },
 });
 

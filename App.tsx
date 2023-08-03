@@ -1,32 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 import LaunchingScreen from './src/components/LaunchingScreen';
 import LoginScreen from './src/components/LoginScreen';
-import FirstScreen from './src/components/FirstScreen';
-import SecondScreen from './src/components/SecondScreen';
-import ThirdScreen from './src/components/ThirdScreen';
-import FourthScreen from './src/components/FourthScreen';
-import FifthScreen from './src/components/FifthScreen';
-import SixthScreen from './src/components/SixthScreen';
+import SignUpScreen from './src/components/SignUpScreen';
 
+const Stack = createStackNavigator();
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <LaunchingScreen/>
-      <LoginScreen/>
-      {/* <ThirdScreen/> */}
-      {/* <FourthScreen/> */}
-      {/* <FifthScreen/> */}
-      {/* <SixthScreen/> */}
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const AppNavigator: React.FC = () => (
+  <NavigationContainer>
+    <Stack.Navigator initialRouteName="LaunchingScreen" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="LaunchingScreen" component={LaunchingScreen} />
+      <Stack.Screen name="SignInSignUp" component={LoginScreen} />
+      <Stack.Screen name="SignUp" component={SignUpScreen} />
+      {/* Add other screens to the stack */}
+    </Stack.Navigator>
+  </NavigationContainer>
+);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-});
+export default AppNavigator;
