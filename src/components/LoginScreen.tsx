@@ -1,18 +1,35 @@
-import React from 'react';
-import { useState, useEffect, FC } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { NavigationProp, RouteProp } from '@react-navigation/native';
 
-const LoginScreen: React.FC = () => {
+type RootStackParamList = {
+  LaunchingScreen: undefined;
+  SignInSignUp: undefined;
+  SignUp: undefined;
+  // Add other screen names here as needed
+};
+
+type LoginScreenRouteProp = RouteProp<RootStackParamList, 'SignInSignUp'>;
+type LoginScreenNavigationProp = NavigationProp<RootStackParamList, 'SignInSignUp'>;
+
+interface Props {
+  route: LoginScreenRouteProp;
+  navigation: LoginScreenNavigationProp;
+}
+
+const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Function to handle login button press
   const handleLogin = () => {
     // Implement your login logic here
-    // For demonstration purposes, let's just display the user's email on successful login
     if (email && password) {
       alert(`Logged in as: ${email}`);
     }
+  };
+
+  const handleSignUpPress = () => {
+    navigation.navigate('SignUp');
   };
 
   return (
@@ -35,7 +52,9 @@ const LoginScreen: React.FC = () => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
-      {/* Add a "Forgot Password" link or any other necessary elements */}
+      <TouchableOpacity onPress={handleSignUpPress}>
+        <Text style={styles.createAccountText}>Don't have an account? Create One</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -69,6 +88,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#242428',
     textAlign: 'center',
+  },
+  createAccountText: {
+    color: '#FFDD95',
+    marginTop: 20,
   },
 });
 
