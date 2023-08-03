@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 const AppNavigator: React.FC = () => (
   <NavigationContainer>
-    <Stack.Navigator initialRouteName="LaunchingScreen" headerMode="none">
+    <Stack.Navigator initialRouteName="LaunchingScreen" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="LaunchingScreen" component={LaunchingScreen} />
       <Stack.Screen name="SignInSignUp" component={LoginScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
@@ -32,6 +32,11 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.heading}>Sign Up</Text>
+
+      {/* Add your logo image here */}
+      <Image source={require('../../assets/yo.png')} style={styles.logo} resizeMode="contain" />
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -63,6 +68,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#242428',
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFDD95',
+    marginBottom: 20,
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
   },
   input: {
     width: '80%',
