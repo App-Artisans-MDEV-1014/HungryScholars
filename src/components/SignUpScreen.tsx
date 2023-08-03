@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { NavigationProp, RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
   LaunchingScreen: undefined;
@@ -9,11 +9,9 @@ type RootStackParamList = {
   // Add other screen names here as needed
 };
 
-type SignUpScreenRouteProp = RouteProp<RootStackParamList, 'SignUp'>;
-type SignUpScreenNavigationProp = NavigationProp<RootStackParamList, 'SignUp'>;
+type SignUpScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SignUp'>;
 
 interface Props {
-  route: SignUpScreenRouteProp;
   navigation: SignUpScreenNavigationProp;
 }
 

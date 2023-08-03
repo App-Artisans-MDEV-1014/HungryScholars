@@ -1,27 +1,26 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { NavigationProp, RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
   LaunchingScreen: undefined;
-  LoginScreen: undefined;
+  SignInSignUp: undefined;
   SignUp: undefined;
   // Add other screen names here as needed
 };
 
-type LaunchingScreenRouteProp = RouteProp<RootStackParamList, 'LaunchingScreen'>;
-type LaunchingScreenNavigationProp = NavigationProp<RootStackParamList, 'LaunchingScreen'>;
+type LaunchingScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LaunchingScreen'>;
 
 interface Props {
-  route: LaunchingScreenRouteProp;
   navigation: LaunchingScreenNavigationProp;
 }
 
 const LaunchingScreen: React.FC<Props> = ({ navigation }) => {
   useEffect(() => {
+    // Simulate loading time for demonstration purposes
     const fakeLoadingTime = 2000; // 2 seconds
     const timer = setTimeout(() => {
-      navigation.replace('LoginScreen');
+      navigation.replace('SignInSignUp');
     }, fakeLoadingTime);
 
     return () => clearTimeout(timer);
