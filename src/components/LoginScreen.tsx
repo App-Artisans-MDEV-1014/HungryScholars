@@ -6,6 +6,8 @@ type RootStackParamList = {
   LaunchingScreen: undefined;
   SignInSignUp: undefined;
   SignUp: undefined;
+  Home: undefined;
+
   // Add other screen names here as needed
 };
 
@@ -21,7 +23,10 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
   const handleLogin = () => {
     // Implement your login logic here
+    navigation.navigate('Home');
+
     if (email && password) {
+      
       alert(`Logged in as: ${email}`);
     }
   };
