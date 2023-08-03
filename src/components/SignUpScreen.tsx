@@ -35,7 +35,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
       <Text style={styles.heading}>Sign Up</Text>
 
       {/* Add your logo image here */}
-      <Image source={require('../../assets/yo.png')} style={styles.logo} resizeMode="contain" />
+      <Image source={require('../../assets/images/logo.png')} style={styles.logo} resizeMode="contain" />
 
       <TextInput
         style={styles.input}
