@@ -2,7 +2,7 @@
     "restaurants": [
       {
         "title": "McDonald's",
-        "image": "https://picsum.photos/1200/600",
+        "image": "https://i.ibb.co/wSPfHmW/Mcdonalds-Banner.jpg",
         "rating": 4.7,
         "minCharge": 10.00,
         "items": [
@@ -33,7 +33,7 @@
       },
       {
         "title": "KFC (Kentucky Fried Chicken)",
-        "image": "https://picsum.photos/1200/600",
+        "image": "https://www.caramelpictures.com/wp-content/uploads/2021/04/KFC-Uber-banner-2.jpg",
         "rating": 4.5,
         "minCharge": 12.00,
         "items": [

@@ -91,7 +91,7 @@ const Home: FC<IProps> = (props) => {
   renderItem={({ item: restaurant }) => (
     <View key={restaurant.id}>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: imgrestaurant.image }} style={styles.restaurantBanner} />
+        <Image source={{ uri: restaurant.image }} style={styles.restaurantBanner} />
         <View style={styles.overlay}>
           <Text style={styles.name}>{restaurant.title}</Text>
           <StarRating rating={restaurant.rating} />
