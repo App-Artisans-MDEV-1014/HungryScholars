@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import LaunchingScreen from './src/components/LaunchingScreen';
 import LoginScreen from './src/components/LoginScreen';
 import SignUpScreen from './src/components/SignUpScreen';
+import CustomerSupportScreen from './src/components/CustomerSupportScreen';
 
 import Home from './src/components/Home';
 import Item from './src/components/Item';
@@ -72,7 +73,12 @@ const AppNavigator: React.FC = () => (
       <Stack.Screen name="LaunchingScreen" component={LaunchingScreen} />
       <Stack.Screen name="SignInSignUp" component={LoginScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
+
+      <Stack.Screen name="CustomerSupportScreen" component={CustomerSupportScreen} />
+      {/* Add other screens to the stack */}
+
       <Stack.Screen name="Home" component={TabNavigator} />
+
     </Stack.Navigator>
   </NavigationContainer>
 
