@@ -6,6 +6,7 @@ type RootStackParamList = {
   LaunchingScreen: undefined;
   SignInSignUp: undefined;
   SignUp: undefined;
+  OrderScreen: undefined;
   // Add other screen names here as needed
 };
 
@@ -20,7 +21,7 @@ const LaunchingScreen: React.FC<Props> = ({ navigation }) => {
     // Simulate loading time for demonstration purposes
     const fakeLoadingTime = 2000; // 2 seconds
     const timer = setTimeout(() => {
-      navigation.replace('SignInSignUp');
+      navigation.replace('OrderScreen'); // Replace LaunchingScreen with OrderScreen
     }, fakeLoadingTime);
 
     return () => clearTimeout(timer);

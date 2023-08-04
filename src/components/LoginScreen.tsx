@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
   LaunchingScreen: undefined;
   SignInSignUp: undefined;
   SignUp: undefined;
+  OrderScreen: undefined;
   // Add other screen names here as needed
 };
 
@@ -19,44 +20,34 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Implement your login logic here
-    if (email && password) {
-      alert(`Logged in as: ${email}`);
-    }
-  };
+  const handleSignIn = () => {
+    // Perform authentication logic here, such as validating user credentials
+    const isAuthenticated = true; // Replace with actual authentication logic
 
-  const handleSignUpPress = () => {
-    navigation.navigate('SignUp');
+    if (isAuthenticated) {
+      navigation.navigate('OrderScreen'); // Navigate to OrderScreen if authentication is successful
+    } else {
+      // Handle unsuccessful authentication (e.g., show error message)
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Log In</Text>
-
-      {/* Add your logo image here */}
-      <Image source={require('../../assets/yo.png')} style={styles.logo} resizeMode="contain" />
-
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#FFDD95"
-        onChangeText={setEmail}
         value={email}
+        onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor="#FFDD95"
         secureTextEntry
-        onChangeText={setPassword}
         value={password}
+        onChangeText={setPassword}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Sign In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleSignUpPress}>
-        <Text style={styles.createAccountText}>Don't have an account? Create One</Text>
+      <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
+        <Text style={styles.signInButtonText}>Sign In</Text>
       </TouchableOpacity>
     </View>
   );
@@ -69,43 +60,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#242428',
   },
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#FFDD95',
-    marginBottom: 20,
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
-  },
   input: {
     width: '80%',
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#FFDD95',
-    borderRadius: 10,
-    paddingHorizontal: 16,
-    marginVertical: 10,
-    color: '#FFDD95',
+    height: 40,
+    marginBottom: 10,
+    backgroundColor: '#FFF',
+    paddingHorizontal: 10,
+    borderRadius: 5,
   },
-  button: {
+  signInButton: {
+    width: '80%',
+    height: 40,
     backgroundColor: '#FFDD95',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
   },
-  buttonText: {
+  signInButtonText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#242428',
-    textAlign: 'center',
-  },
-  createAccountText: {
-    color: '#FFDD95',
-    marginTop: 20,
   },
 });
 
