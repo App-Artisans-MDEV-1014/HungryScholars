@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Text, View, ScrollView, StyleSheet, TextInput, Image, ImageBackground, FlatList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, View, ScrollView, StyleSheet, TextInput, Image, ImageBackground, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import restaurantData from '../data/restaurants.json';
-import StarRating from './StarRating'; // Assuming the StarRating component is in a separate file.
+import StarRating from './StarRating';
+import { useNavigation } from '@react-navigation/native';
+
 
 interface IRestaurant {
   id: string;
@@ -24,27 +25,45 @@ interface IRestaurant {
   }>;
 }
 
-
 interface IProps {}
+
 const imgrestaurant = {
   image: 'https://picsum.photos/1200/600',
 };
 
 const Home: FC<IProps> = (props) => {
- 
+  // const navigation = useNavigation();
   const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
 
   useEffect(() => {
     // Assuming restaurantData is imported and contains the JSON data
-    setRestaurants(restaurantData.restaurants as IRestaurant[]);
-
+    setRestaurants(restaurantData.restaurants as IRestaurant[]); // Explicit type assertion
   }, []);
+
+  const navigation = useNavigation();
+
+
+  const renderCustomHeader = () => {
+    return (
+      <View style={styles.topBar}>
+        <Image
+          source={require('../../assets/images/logo.png')} // Replace with your app logo image source
+          style={styles.appLogo}
+          resizeMode="contain"
+        />
+      </View>
+    );
+  };
+
+  
+  
 
   return (
     <SafeAreaView style={styles.container}>
+      {renderCustomHeader()}
       <View style={styles.scrollViewContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <ImageBackground source={require('../../assets/images/Campuses/SGB.jpg')} style={styles.image}>
+          <ImageBackground source={require('../../assets/images/Campuses/SGB.jpg')} style={styles.image}>
             <View style={styles.imageOverlay} />
             <Text style={styles.imageText}>Alectra</Text>
           </ImageBackground>
@@ -89,7 +108,7 @@ const Home: FC<IProps> = (props) => {
   data={restaurants}
   keyExtractor={(item) => item.id}
   renderItem={({ item: restaurant }) => (
-    <View key={restaurant.id}>
+    <TouchableOpacity onPress={() => navigation.navigate('RestaurantMenuScreen')}>
       <View style={styles.imageContainer}>
         <Image source={{ uri: restaurant.image }} style={styles.restaurantBanner} />
         <View style={styles.overlay}>
@@ -97,7 +116,7 @@ const Home: FC<IProps> = (props) => {
           <StarRating rating={restaurant.rating} />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )}
 />
     </SafeAreaView>
@@ -117,24 +136,28 @@ const styles = StyleSheet.create({
     width: '100%',
     margin: 10,
   },
-  restaurantBanner:{
+  restaurantContainer: {
+    width: '100%',
+    margin: 10,
+  },
+  restaurantBanner: {
     height: 200,
   },
   image: {
     flex: 1,
-    position: 'relative', 
+    position: 'relative',
     width: 200,
     justifyContent: 'center',
-    alignItems: 'center', 
+    alignItems: 'center',
   },
   imageOverlay: {
-    ...StyleSheet.absoluteFillObject, // same as: position: 'absolute', top: 0, right: 0, bottom: 0, left: 0
-    backgroundColor: 'rgba(0,0,0,0.3)', // semi-transparent black
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.3)',
   },
   imageText: {
-    color: '#FFDD95', // bright color
-    fontWeight: 'bold', // bold text
-    fontSize: 18, // larger text
+    color: '#FFDD95',
+    fontWeight: 'bold',
+    fontSize: 18,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -164,12 +187,26 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#FFFFFF', // Updated to white
   },
   rating: {
     fontSize: 14,
-    color: '#fff',
+    color: '#FFFFFF', // Updated to white
   },
+
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    marginTop: 30,
+  },
+  appLogo: {
+    width: 300,
+    height: 50,
+    // Add any other styles for the app logo here
+  },
+
 });
 
 export default Home;

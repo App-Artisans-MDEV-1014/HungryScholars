@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type RootStackParamList = {
   LaunchingScreen: undefined;
@@ -31,7 +32,15 @@ const CustomerSupportScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Customer Support</Text>
+      <View style={styles.topBar}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={24} color="#FFDD95" />
+        </TouchableOpacity>
+          
+          <Text style={styles.reportText}>Report an Issue</Text>
+        
+      </View>
+      <View style={styles.space} />
       <TextInput
         style={styles.input}
         placeholder="Enter your report here"
@@ -50,32 +59,38 @@ const CustomerSupportScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#242428',
     padding: 20,
   },
-  heading: {
-    fontSize: 24,
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+    marginTop:10,
+  },
+  reportText: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#FFDD95',
-    marginBottom: 20,
+  },
+  space: {
+    height: 20,
   },
   input: {
     width: '100%',
-    height: 150,
+    height: 200, // Increase height to make the input field larger
     borderWidth: 1,
     borderColor: '#FFDD95',
     borderRadius: 10,
     paddingHorizontal: 16,
     marginVertical: 10,
     color: '#FFDD95',
-    textAlignVertical: 'top', // To start typing from the top of the input
+    textAlignVertical: 'top',
   },
   button: {
     backgroundColor: '#FFDD95',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingVertical: 12, // Increase padding to make the button larger
     borderRadius: 10,
     marginVertical: 10,
   },
