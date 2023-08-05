@@ -28,7 +28,7 @@ const LaunchingScreen: React.FC<Props> = ({ navigation }) => {
     // Simulate loading time for demonstration purposes
     const fakeLoadingTime = 6000; // 2 seconds
     const timer = setTimeout(() => {
-      navigation.replace('LaunchingScreen');
+      navigation.replace('FirstOnboardingScreen');
     }, fakeLoadingTime);
 
     return () => clearTimeout(timer);
