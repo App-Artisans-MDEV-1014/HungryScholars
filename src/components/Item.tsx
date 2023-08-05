@@ -1,11 +1,14 @@
 import React, { FC, useState } from 'react';
 import { SafeAreaView, Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import StarRating from './StarRating'; // Assuming the StarRating component is in a separate file
+import { useNavigation } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface IProps {}
 
 const Item: FC<IProps> = (props) => {
   const [quantity, setQuantity] = useState(1);
+  const navigation = useNavigation();
 
   const handleIncrement = () => {
     setQuantity(quantity + 1);
@@ -24,14 +27,20 @@ const Item: FC<IProps> = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.topBar}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={24} color="#FFDD95" />
+        </TouchableOpacity>
+        
+      </View>
     {/* Image */}
     <View style={styles.imageContainer}>
       <Image
-        source={{ uri: 'https://picsum.photos/1200/600' }}
-        style={styles.image}
-      />
+          source={require('../../assets/images/Burger.jpg')} // Replace with your local image path
+          style={styles.image}
+        />
       <View style={styles.overlay}>
-        <Text style={styles.text}>DEMO</Text>
+        <Text style={styles.text}>Burger</Text>
         <StarRating rating={4.5} starSize={20} starColor="#FFDD95" />
       </View>
     </View>
@@ -104,6 +113,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#242428',
+  },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+    marginTop:10,
   },
   imageContainer: {
     position: 'relative',
