@@ -5,8 +5,14 @@ import { StackNavigationProp } from '@react-navigation/stack';
 type RootStackParamList = {
   LaunchingScreen: undefined;
   SignInSignUp: undefined;
-  SignUp: undefined;
+  SignUpScreen: undefined;
   Home: undefined;
+
+
+  FirstOnboardingScreen: undefined;
+  SecondOnboardingScreen: undefined;
+  ThirdOnboardingScreen: undefined;
+  FourthOnboardingScreen: undefined;
 
   // Add other screen names here as needed
 };
@@ -32,7 +38,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   const handleSignUpPress = () => {
-    navigation.navigate('SignUp');
+    navigation.navigate('SignUpScreen');
   };
 
   return (
@@ -40,7 +46,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       <Text style={styles.heading}>Log In</Text>
 
       {/* Add your logo image here */}
-      <Image source={require('../../assets/yo.png')} style={styles.logo} resizeMode="contain" />
+      <Image source={require('../../assets/APP_logo_lg.png')} style={styles.logo} resizeMode="contain" />
 
       <TextInput
         style={styles.input}
