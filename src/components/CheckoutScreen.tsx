@@ -47,7 +47,10 @@ const CheckoutScreen: React.FC<Props> = () => {
 
   const renderItem = ({ item }: { item: OrderItem }) => (
     <View style={styles.orderItemContainer}>
-      <Text style={styles.orderItem}>{item.name} ${item.price.toFixed(2)}</Text>
+      <View style={styles.orderItemInfo}>
+        <Text style={styles.orderItemName}>{item.name}</Text>
+        <Text style={styles.orderItemPrice}>${item.price.toFixed(2)}</Text>
+      </View>
       <View style={styles.quantityContainer}>
         <TouchableOpacity
           style={styles.quantityButton}
@@ -106,12 +109,12 @@ const CheckoutScreen: React.FC<Props> = () => {
       {/* Student Details */}
       <View style={styles.studentDetailsContainer}>
         <Text style={styles.studentDetailsHeading}>Student Details</Text>
-      </View>
-      <View style={styles.studentDetails}>
-        <Image source={require('../../assets/images/logo.png')} style={styles.profilePicture} />
-        <View style={styles.studentInfo}>
-          <Text style={styles.studentName}>{studentDetails.name}</Text>
-          <Text style={styles.contactNumber}>{studentDetails.contactNumber}</Text>
+        <View style={styles.studentDetails}>
+          <Image source={require('../../assets/images/logo.png')} style={styles.profilePicture} />
+          <View style={styles.studentInfo}>
+            <Text style={styles.studentName}>{studentDetails.name}</Text>
+            <Text style={styles.contactNumber}>{studentDetails.contactNumber}</Text>
+          </View>
         </View>
       </View>
 
@@ -148,9 +151,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
-    backgroundColor: '#888888', // Add grey background color
-    padding: 10, // Add padding to the header
-    borderRadius: 8, // Add rounded corners to the header
   },
   backButton: {
     color: '#FFDD95',
@@ -174,20 +174,58 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   orderItemContainer: {
-    backgroundColor: '#FFDD95',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#242428',
+    borderColor: '#FFDD95',
+    borderWidth: 2,
     borderRadius: 8,
     marginBottom: 10,
-  },
-  orderItem: {
-    color: '#242428',
-    fontSize: 18,
     padding: 10,
   },
-  studentDetailsContainer: {
+  orderItemInfo: {
+    flex: 1,
+  },
+  orderItemName: {
+    color: '#FFDD95',
+    fontSize: 18,
+  },
+  orderItemPrice: {
+    color: '#FDC674',
+    fontSize: 16,
+  },
+  quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
+  },
+  quantityButton: {
+    backgroundColor: '#888888',
+    padding: 5,
+    borderRadius: 4,
+  },
+  quantityButtonText: {
+    color: '#FFDD95',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  quantity: {
+    color: '#FFDD95',
+    fontSize: 16,
+    marginHorizontal: 10,
+  },
+  studentDetailsContainer: {
     marginBottom: 20,
+  },
+  studentDetailsHeading: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFDD95',
+    marginBottom: 10,
+  },
+  studentDetails: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   profilePicture: {
     width: 40,
@@ -233,13 +271,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#666666', // Grey background color
-    borderRadius: 8, // Rounded corners
-    padding: 10, // Padding
+    backgroundColor: '#666666',
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     position: 'absolute',
-    bottom: 20, // Align the checkout section to the bottom
-    left: 20, // Add left padding to the checkout section
-    right: 20, // Add right padding to the checkout section
+    bottom: 20,
+    left: 20,
+    right: 20,
   },
   checkoutDetails: {
     flex: 1,
@@ -254,44 +293,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   checkoutButton: {
-    backgroundColor: '#FFDD95', // Yellow background color
+    backgroundColor: '#FFDD95',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 8, // Rounded corners
+    borderRadius: 8,
   },
   checkoutButtonText: {
     color: '#242428',
     fontSize: 18,
     fontWeight: 'bold',
-  },quantityContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  quantityButton: {
-    backgroundColor: '#888888',
-    padding: 5,
-    borderRadius: 4,
-  },
-  quantityButtonText: {
-    color: '#FFDD95',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  quantity: {
-    color: '#FFDD95',
-    fontSize: 16,
-    marginHorizontal: 10,
-  },
-  studentDetailsHeading: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#FFDD95',
-    marginBottom: 10,
-  },
-  studentDetails: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
   },
 });
 

@@ -7,8 +7,9 @@ interface PaymentMethodProps {
 
 const PaymentMethodSection: React.FC<PaymentMethodProps> = (props) => {
   const paymentMethods = [
-    { id: '1', name: 'Card', icon: require('../../assets/images/logo.png') },
-    { id: '2', name: 'Credit', icon: require('../../assets/images/logo.png') },
+    { id: '1', name: 'Debit Card', icon: require('../../assets/images/logo.png') },
+    { id: '2', name: 'Credit Credit', icon: require('../../assets/images/logo.png') },
+    { id: '3', name: 'PayPal', icon: require('../../assets/images/logo.png') }, // New payment option
     // Add more payment methods as needed
   ];
 
@@ -39,25 +40,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   paymentOptionsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#666666',
-    borderRadius: 8,
-    padding: 10,
-    flexWrap: 'wrap', // Add flexWrap to wrap items to the next line
+    marginTop: 10, // Add marginTop to separate the payment options from the header
   },
   paymentOption: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    marginBottom: 10, // Add marginBottom to separate payment methods on different lines
-    flex: 1,
-    maxWidth: '48%', // Limit each payment method to occupy maximum 48% of the container width
+    flexDirection: 'row', // Display icon and text in a row
+    alignItems: 'center', // Center the content horizontally
+    marginBottom: 10, // Add marginBottom to separate each payment option
   },
   paymentMethodIcon: {
     width: 30,
     height: 30,
-    marginRight: 10,
+    marginRight: 10, // Add marginRight to create space between icon and text
   },
   paymentMethodName: {
     fontSize: 16,

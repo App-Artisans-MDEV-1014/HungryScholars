@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
+
 type RootStackParamList = {
   LaunchingScreen: undefined;
   SignInSignUp: undefined;
@@ -27,7 +28,7 @@ const LaunchingScreen: React.FC<Props> = ({ navigation }) => {
     // Simulate loading time for demonstration purposes
     const fakeLoadingTime = 6000; // 2 seconds
     const timer = setTimeout(() => {
-      navigation.replace('FirstOnboardingScreen');
+      navigation.replace('LaunchingScreen');
     }, fakeLoadingTime);
 
     return () => clearTimeout(timer);
@@ -35,7 +36,7 @@ const LaunchingScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/AppLaunch.gif')} style={styles.logo1} resizeMode="contain" />
+      <Image source={require('../../assets/RENDER.gif')} style={styles.logo1} resizeMode="contain" />
       {/* Add any loading animation or branding elements */}
     </View>
   );
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#242428',
   },
   logo1: {
-    width: "100%",
-    height: "100%",
+    width: 500,
+    height: 890,
     marginBottom: 20,
   },
 
